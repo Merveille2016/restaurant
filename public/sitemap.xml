@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder domain: update every URL when the real domain is known. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://mialinegiftedhands.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/menu</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/menu"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/menu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/menu"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/en/menu</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/menu"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/menu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/menu"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/about"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/about"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/contact"/>
+  </url>
+  <url>
+    <loc>https://mialinegiftedhands.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mialinegiftedhands.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mialinegiftedhands.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mialinegiftedhands.com/contact"/>
+  </url>
+</urlset>
