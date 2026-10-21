@@ -1234,6 +1234,21 @@ main {
   margin-bottom: 16px;
 }
 
+.order-ready .order-save-status {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: -10px;
+}
+
+.order-ready .order-save-status.saved {
+  color: #1e7d46;
+}
+
+.order-ready .order-save-status.error {
+  color: #b03a2e;
+}
+
 .order-ready-actions {
   display: flex;
   flex-wrap: wrap;

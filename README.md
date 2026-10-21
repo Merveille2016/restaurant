@@ -31,6 +31,7 @@ src/
   i18n.js                   Fournisseur de langue (LangProvider, useLang)
   translations.js           Dictionnaire FR / EN (tout le texte du site)
   whatsapp.js               Construction des liens et messages WhatsApp
+  supabase.js               Enregistrement des commandes (RPC place_order)
   data/
     site.js                 CONFIGURATION : nom, adresse, numéros WhatsApp
     menu.js                 Plats, plats du jour, boissons (FR/EN + prix)
@@ -40,6 +41,7 @@ src/
     Home.jsx, Menu.jsx, About.jsx, Contact.jsx
   index.css                 Reset + variables de design
   App.css                   Styles des composants
+supabase/                   Backend : migrations, seed généré, config locale
 tools/                      Scripts de contrôle qualité (Node, zéro dépendance)
 ```
 
@@ -61,10 +63,47 @@ dans `src/translations.js` — les clés FR et EN doivent rester identiques
 
 ## Commande via WhatsApp
 
-Le site n'enregistre **aucune commande** : la page Contact construit un message
-pré-rempli (nom, téléphone, commande, lieu de livraison) que le client envoie
-lui-même via WhatsApp. Un bouton « Copier le message » sert de solution de
-secours si l'ouverture de WhatsApp est bloquée.
+La page Contact construit un message pré-rempli (nom, téléphone, commande,
+lieu de livraison) que le client envoie lui-même via WhatsApp — c'est le canal
+principal, aucun compte n'est requis. Un bouton « Copier le message » sert de
+solution de secours si l'ouverture de WhatsApp est bloquée.
+
+En parallèle, la commande est enregistrée (au mieux, sans jamais bloquer le
+client) dans la table `orders` via la fonction `public.place_order()` de
+Supabase — voir la section suivante. Sans variables d'environnement Supabase,
+ou en cas d'échec de l'appel, le site retrouve exactement son comportement
+WhatsApp seul.
+
+## Base de données (Supabase)
+
+Le dossier `supabase/` contient le backend :
+
+- `migrations/` — schéma, fonctions/trigger, politiques RLS + durcissement
+  (limites de longueur et anti-spam sur `place_order`) ;
+- `seed.sql` — fichier **généré** par `node tools/generate-seed.js` depuis
+  `src/data/*.js` (la source de vérité reste le frontend tant que le menu
+  n'est pas lu en base) ;
+- `config.toml` — configuration de la pile locale.
+
+Développement local :
+
+```
+supabase start          # démarre la pile locale (Docker)
+supabase db reset        # applique migrations + seed
+supabase status          # affiche l'URL de l'API et la clé anon locale
+```
+
+Copiez ensuite ces valeurs dans `.env.local` (voir `.env.example`) :
+
+- `VITE_SUPABASE_URL` — URL de l'API du projet ;
+- `VITE_SUPABASE_ANON_KEY` — clé publique « anon », protégée par les
+  politiques RLS. **Ne jamais** mettre la clé `service_role` dans une
+  variable `VITE_` : elle serait livrée à chaque navigateur.
+
+Le compte administrateur local créé par le seed utilise le mot de passe de
+développement `dev-admin-password` (ou la variable d'environnement
+`SUPABASE_ADMIN_PASSWORD` de `generate-seed.js`). À ne jamais réutiliser sur
+un projet hébergé.
 
 ## Bilinguisme
 

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useLang } from "../lang-context.js";
 import { SITE } from "../data/site.js";
 import { waLink, deliveryOrderMessage } from "../whatsapp.js";
+import { saveOrder, supabaseConfigured } from "../supabase.js";
 import { IconChat, IconCheck, IconCopy, IconPhone } from "../components/Icons.jsx";
 
 function Field({ id, label, error, children }) {
@@ -23,6 +24,7 @@ export default function Contact() {
   const [values, setValues] = useState({ name: "", phone: "", order: "", location: "" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState(null);
+  const [saveState, setSaveState] = useState(null);
   const [copied, setCopied] = useState(false);
   const formRef = useRef(null);
   const messageRef = useRef(null);
@@ -54,14 +56,26 @@ export default function Contact() {
       return;
     }
 
-    const built = deliveryOrderMessage(lang, {
+    const payload = {
       name: values.name.trim(),
       phone: values.phone.trim(),
       order: values.order.trim(),
       location: values.location.trim(),
-    });
+    };
+    const built = deliveryOrderMessage(lang, payload);
     setMessage(built);
+
+    // WhatsApp stays the primary channel: it must open synchronously inside
+    // the click handler, otherwise popup blockers may interfere. The
+    // database save runs in the background and never blocks the customer.
     window.open(waLink(SITE.whatsapp[0].number, built), "_blank", "noopener");
+
+    if (supabaseConfigured()) {
+      setSaveState("saving");
+      saveOrder(payload)
+        .then(() => setSaveState("saved"))
+        .catch(() => setSaveState("error"));
+    }
   };
 
   const handleCopy = async () => {
@@ -175,6 +189,15 @@ export default function Contact() {
           {message ? (
             <div className="order-ready" role="status">
               <p>{t("contact.form.ready")}</p>
+              {saveState === "saving" ? (
+                <p className="order-save-status">{t("contact.form.saving")}</p>
+              ) : null}
+              {saveState === "saved" ? (
+                <p className="order-save-status saved">{t("contact.form.saved")}</p>
+              ) : null}
+              {saveState === "error" ? (
+                <p className="order-save-status error">{t("contact.form.saveError")}</p>
+              ) : null}
               <div className="order-ready-actions">
                 {SITE.whatsapp.map((wa) => (
                   <a

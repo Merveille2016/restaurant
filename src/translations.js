@@ -174,6 +174,10 @@ export const DICT = {
         locationError: "Merci d'indiquer le lieu de livraison.",
         submit: "Envoyer sur WhatsApp",
         ready: "Votre message est prêt — envoyez-le via WhatsApp :",
+        saving: "Enregistrement de votre commande…",
+        saved: "Commande enregistrée.",
+        saveError:
+          "La commande n'a pas pu être enregistrée — envoyez votre message WhatsApp, nous le recevons quand même.",
         copy: "Copier le message",
         copied: "Copié !",
         call: "Appeler",
@@ -389,6 +393,10 @@ export const DICT = {
         locationError: "Please indicate the delivery location.",
         submit: "Send on WhatsApp",
         ready: "Your message is ready — send it via WhatsApp:",
+        saving: "Saving your order…",
+        saved: "Order saved.",
+        saveError:
+          "Your order could not be saved — send your WhatsApp message, we will receive it anyway.",
         copy: "Copy the message",
         copied: "Copied!",
         call: "Call",
