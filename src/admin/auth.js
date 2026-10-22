@@ -1,11 +1,20 @@
 // Manager authentication through the Supabase Auth REST API — no
 // supabase-js dependency (see README), just fetch calls with the anon key.
-// The session lives in localStorage; expired access tokens are refreshed
-// transparently by src/admin/api.js.
+// The session lives in sessionStorage, so closing the tab or the browser
+// signs the manager out; while the tab stays open (order alerts), expired
+// access tokens are refreshed transparently by src/admin/api.js.
 
 import { supabaseConfigured } from "../supabase.js";
 
 const SESSION_KEY = "mgh-admin-session";
+
+// Sessions used to be kept in localStorage and survived browser restarts:
+// drop any such leftover so every browser asks for credentials again.
+try {
+  localStorage.removeItem(SESSION_KEY);
+} catch {
+  // Storage unavailable (private browsing, prerender): nothing to clean.
+}
 
 function credentials() {
   return {
@@ -16,7 +25,7 @@ function credentials() {
 
 function readSession() {
   try {
-    const raw = localStorage.getItem(SESSION_KEY);
+    const raw = sessionStorage.getItem(SESSION_KEY);
     const parsed = raw ? JSON.parse(raw) : null;
     return parsed && parsed.access_token && parsed.refresh_token ? parsed : null;
   } catch {
@@ -26,8 +35,8 @@ function readSession() {
 
 function writeSession(session) {
   try {
-    if (session) localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-    else localStorage.removeItem(SESSION_KEY);
+    if (session) sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    else sessionStorage.removeItem(SESSION_KEY);
   } catch {
     // Private browsing: the session just won't persist.
   }
