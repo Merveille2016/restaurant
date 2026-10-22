@@ -338,8 +338,8 @@ insert into public.site_settings (id, site_name, site_url, city, country_fr, cou
   'Carrefour Obili, Yaoundé, Cameroun', '[{"label":"671 131 006","number":"237671131006"},{"label":"672 464 364","number":"237672464364"}]'::jsonb, 7, 23,
   'Africa/Douala', '', false,
   false, '30 à 45 minutes en moyenne', '30 to 45 minutes on average',
-  array['cash', 'mtn', 'orange']::text[], false, 'Mialine',
-  '', 'À compléter avec la cuisine : où la recette a été apprise, le plat de famille le plus cher à la maison.', 'To be completed with the kitchen: where the cooking was learned, the family dish the house is proudest of.'
+  array['cash', 'mtn', 'orange']::text[], true, 'Nana Caroline',
+  '', 'Nana Caroline dirige Mialine Gifted Hands. Originaire de Tombel, dans le Sud-Ouest du Cameroun, elle met à l''honneur les saveurs de sa région — eru, ekwang, water fufu — aux côtés des grands classiques du pays : achu, kati-kati, ndolé, sauce escargots et soupe egusi.', 'Nana Caroline runs Mialine Gifted Hands. Originally from Tombel, in Cameroon''s South-West, she puts the flavours of her home region in the spotlight — eru, ekwang, water fufu — alongside the country''s great classics: achu, kati-kati, ndolé, snail sauce and egusi soup.'
 ) on conflict (id) do nothing;
 
 -- Delivery zones
