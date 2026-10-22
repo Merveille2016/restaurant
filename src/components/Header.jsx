@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLang } from "../lang-context.js";
 import { SITE } from "../data/site.js";
-import { IconBurger, IconClose } from "./Icons.jsx";
+import { cartCount, subscribeToCart } from "../cart.js";
+import { IconBurger, IconCart, IconClose } from "./Icons.jsx";
 
 const LINKS = [
   ["", "nav.home"],
@@ -21,6 +22,25 @@ function NavLink({ path, labelKey, route, className, onNavigate }) {
       onClick={onNavigate}
     >
       {labelKey}
+    </a>
+  );
+}
+
+function HeaderCart({ route }) {
+  const { t, path } = useLang();
+  const [count, setCount] = useState(cartCount);
+
+  useEffect(() => subscribeToCart(() => setCount(cartCount())), []);
+
+  const isActive = route === "commande";
+  return (
+    <a
+      href={path("commande")}
+      className={isActive ? "header-cart active" : "header-cart"}
+      aria-label={t("cart.open")}
+    >
+      <IconCart size={20} />
+      {count > 0 ? <span className="header-cart-count">{count > 99 ? "99+" : count}</span> : null}
     </a>
   );
 }
@@ -52,6 +72,7 @@ export default function Header({ route }) {
         </nav>
 
         <div className="header-actions">
+          <HeaderCart route={route} />
           <div className="lang-switch" role="group" aria-label={t("langLabel")}>
             <button
               type="button"

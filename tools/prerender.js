@@ -3,7 +3,7 @@
 import { createServer } from "vite";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { LANGS, PAGES, ROUTES, routePath } from "../src/data/seo.js";
+import { LANGS, PAGES, ROUTES, NOINDEX_ROUTES, routePath } from "../src/data/seo.js";
 import { SITE } from "../src/data/site.js";
 
 const distDir = path.resolve(process.cwd(), "dist");
@@ -38,6 +38,13 @@ function buildDocument(template, { lang, route, url }) {
     /<meta\s+name="description"[\s\S]*?\/>/,
     `<meta name="description" content="${escapeHtml(meta.description)}" />`
   );
+  if (NOINDEX_ROUTES.includes(route)) {
+    html = replaceOnce(
+      html,
+      /<meta name="description" content="[^"]*" \/>/,
+      (match) => `${match}\n  <meta name="robots" content="noindex" />`
+    );
+  }
   html = replaceOnce(
     html,
     /<meta property="og:title" content="[^"]*" \/>/,

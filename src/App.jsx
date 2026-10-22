@@ -16,12 +16,16 @@ import Home from "./pages/Home.jsx";
 import Menu from "./pages/Menu.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import Admin from "./pages/Admin.jsx";
 
 const PAGES = {
   "": Home,
   menu: Menu,
   about: About,
   contact: Contact,
+  commande: Checkout,
+  admin: Admin,
 };
 
 export function Shell() {

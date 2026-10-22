@@ -137,6 +137,23 @@ for (const [index, zone] of SITE.delivery.zones.entries()) {
 }
 emit("");
 
+// ── Delivery drivers ────────────────────────────────────────────────────
+// Placeholder riders the manager then renames from the back-office
+// (#/admin → Livreurs). Phones default to the restaurant's own numbers.
+emit("-- Delivery drivers (placeholders — edit from the back-office)");
+const SEED_DRIVERS = [
+  { name: "Livreur 1", phone: SITE.whatsapp[0]?.number ?? "" },
+  { name: "Livreur 2", phone: SITE.whatsapp[1]?.number ?? SITE.whatsapp[0]?.number ?? "" },
+];
+for (const driver of SEED_DRIVERS) {
+  emit(
+    "insert into public.drivers (name, phone, is_active) values (",
+    `  ${sql(driver.name)}, ${sql(driver.phone)}, true`,
+    ");"
+  );
+}
+emit("");
+
 // ── Admin user ──────────────────────────────────────────────────────────
 emit(
   `-- Local-development administrator: ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`,

@@ -353,6 +353,14 @@ insert into public.delivery_zones (name_fr, name_en, fee_fcfa, sort_order) value
   'Centre-ville, Bastos, Essos', 'Centre-ville, Bastos, Essos', 1000, 2
 );
 
+-- Delivery drivers (placeholders — edit from the back-office)
+insert into public.drivers (name, phone, is_active) values (
+  'Livreur 1', '237671131006', true
+);
+insert into public.drivers (name, phone, is_active) values (
+  'Livreur 2', '237672464364', true
+);
+
 -- Local-development administrator: admin@mialinegiftedhands.com / dev-admin-password
 -- (created directly in auth.users; the on_auth_user_created trigger
 --  adds the profile, which is then promoted to role = admin)

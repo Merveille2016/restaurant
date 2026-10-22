@@ -1,14 +1,29 @@
+import { useState } from "react";
 import { useLang } from "../lang-context.js";
 import { formatPrice } from "../data/site.js";
 import { waLink, dishOrderMessage } from "../whatsapp.js";
 import { SITE } from "../data/site.js";
-import { IconChat, IconFlame, IconLeaf, IconPin } from "./Icons.jsx";
+import { addToCart } from "../cart.js";
+import { IconCart, IconChat, IconCheck, IconFlame, IconLeaf, IconPin } from "./Icons.jsx";
 import Picture from "./Picture.jsx";
 
 export default function DishCard({ dish }) {
   const { lang, t } = useLang();
+  const [added, setAdded] = useState(false);
   const allergens = dish.allergens ?? [];
   const sep = lang === "fr" ? " : " : ": ";
+
+  const handleAdd = () => {
+    addToCart({
+      type: "dish",
+      slug: dish.id,
+      name: dish.name,
+      price: dish.price,
+      image: dish.image ?? null,
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
 
   return (
     <article className={dish.image ? "dish-card has-image" : "dish-card"}>
@@ -54,15 +69,21 @@ export default function DishCard({ dish }) {
           {allergens.map((key) => t(`allergens.${key}`)).join(", ")}
         </p>
       ) : null}
-      <a
-        href={waLink(SITE.whatsapp[0].number, dishOrderMessage(lang, dish))}
-        className="dish-order"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <IconChat size={16} />
-        {t("menu.orderDish")}
-      </a>
+      <div className="dish-actions">
+        <button type="button" className="dish-add" onClick={handleAdd}>
+          {added ? <IconCheck size={16} /> : <IconCart size={16} />}
+          {added ? t("cart.added") : t("cart.add")}
+        </button>
+        <a
+          href={waLink(SITE.whatsapp[0].number, dishOrderMessage(lang, dish))}
+          className="dish-order"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IconChat size={16} />
+          {t("menu.orderDish")}
+        </a>
+      </div>
     </article>
   );
 }
