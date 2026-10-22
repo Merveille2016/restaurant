@@ -11,6 +11,19 @@ export const SITE = {
     { label: "672 464 364", number: "237672464364" },
   ],
 
+  // Official accounts. The TikTok video is the one featured on the home page.
+  social: {
+    tiktok: {
+      handle: "@caro.gifted.hands",
+      url: "https://www.tiktok.com/@caro.gifted.hands",
+      featuredVideoId: "7697506389287128340",
+    },
+    facebook: {
+      name: "Mialine Gifted hands Restaurant & Bar",
+      url: "https://www.facebook.com/profile.php?id=61584699217591",
+    },
+  },
+
   // Opening hours in Yaoundé time (24h clock), used for the "open now" status.
   hours: { opens: 7, closes: 23, timeZone: "Africa/Douala" },
 
@@ -34,14 +47,16 @@ export const SITE = {
     payments: ["cash", "mtn", "orange"],
   },
 
-  // The cook's story on the About page. Hidden until confirmed.
+  // The manager's story on the About page. Name, role and home town only —
+  // no photo or other personal details (see CONTENT-TO-CONFIRM.md).
   cook: {
-    confirmed: false,
-    name: "Mialine",
+    confirmed: true,
+    name: "Nana Caroline",
     image: "",
+    role: { fr: "Gérante", en: "Manager" },
     story: {
-      fr: "À compléter avec la cuisine : où la recette a été apprise, le plat de famille le plus cher à la maison.",
-      en: "To be completed with the kitchen: where the cooking was learned, the family dish the house is proudest of.",
+      fr: "Nana Caroline dirige Mialine Gifted Hands. Originaire de Tombel, dans le Sud-Ouest du Cameroun, elle met à l'honneur les saveurs de sa région — eru, ekwang, water fufu — aux côtés des grands classiques du pays : achu, kati-kati, ndolé, sauce escargots et soupe egusi.",
+      en: "Nana Caroline runs Mialine Gifted Hands. Originally from Tombel, in Cameroon's South-West, she puts the flavours of her home region in the spotlight — eru, ekwang, water fufu — alongside the country's great classics: achu, kati-kati, ndolé, snail sauce and egusi soup.",
     },
   },
 };

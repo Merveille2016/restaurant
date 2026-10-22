@@ -54,6 +54,44 @@ export const DICT = {
       title: "Nos créations gourmandes",
       subtitle: "Des plats maison, cuisinés comme à la maison",
     },
+    space: {
+      title: "Notre salle",
+      subtitle: "Gazon au sol, banquettes vertes, tissus traditionnels et lumières néon : un resto-bar où l'on se sent bien",
+    },
+    events: {
+      kicker: "Traiteur",
+      title: "Vos cérémonies",
+      text: "Anniversaires, mariages, réunions de famille ou d'entreprise : Mialine Gifted Hands prépare vos plats pour toutes vos cérémonies. « Homemade with love, served with excellence. » Contactez-nous pour en parler.",
+      signatureTitle: "Nos spécialités",
+      dishes: [
+        "Kati-kati",
+        "Fufu & eru",
+        "Achu",
+        "Riz sauté",
+        "Ekwang",
+        "Sauce escargots & macabo",
+        "Fufu & soupe egusi",
+      ],
+      cta: "Demander un devis",
+      waMessage: "Bonjour Mialine Gifted Hands ! Je souhaite un devis pour une cérémonie.",
+      imgAlt: "Affiche Mialine Gifted Hands, resto-bar Obili : menu, spécialités et contacts pour vos cérémonies",
+    },
+    videos: {
+      title: "En vidéo",
+      subtitle: "Découvrez Mialine Gifted Hands en images",
+      presentation: "Bienvenue chez Mialine Gifted Hands",
+      message: "Un mot de l'équipe",
+      tiktok: "Sur notre TikTok",
+      unsupported: "Votre navigateur ne lit pas cette vidéo.",
+    },
+    social: {
+      title: "Suivez-nous",
+      tiktok: "TikTok",
+      facebook: "Facebook",
+      tiktokPlay: "Lire la vidéo TikTok",
+      tiktokNote: "La lecture charge le lecteur de TikTok et ses cookies.",
+      tiktokOpen: "Ouvrir sur TikTok",
+    },
     testimonials: {
       title: "Ce que disent nos clients",
     },
@@ -102,7 +140,7 @@ export const DICT = {
       tagline: "La cuisine camerounaise, transmise avec amour",
       storyTitle: "Des mains douées, des recettes authentiques",
       storyP1:
-        "Mialine Gifted Hands est né à Carrefour Obili d'une passion simple : partager la vraie cuisine camerounaise, celle des cuisines familiales et des marchés de Yaoundé.",
+        "Mialine Gifted Hands, resto-bar ouvert en 2026 à Carrefour Obili, est né d'une passion simple : partager la vraie cuisine camerounaise, celle des cuisines familiales et des marchés de Yaoundé.",
       storyP2:
         "Chaque matin, nous sélectionnons des ingrédients frais — feuilles d'eru, ndolé, plantains, épices du terroir — et nous cuisinons lentement, comme à la maison. Des dizaines de plats de plusieurs régions du Cameroun vous attendent, du taro pilé des Grassfields au mbongo tchobi des Bassa.",
       storyImgAlt:
@@ -160,6 +198,7 @@ export const DICT = {
     contact: {
       title: "Contact & livraison",
       tagline: "Nous sommes là pour vous servir de bons plats chaque jour",
+      eventsNote: "nous cuisinons aussi pour vos événements, écrivez-nous sur WhatsApp.",
       formTitle: "Commander en livraison",
       formSubtitle:
         "Remplissez le formulaire : votre commande s'ouvre directement dans WhatsApp, prête à être envoyée.",
@@ -274,6 +313,44 @@ export const DICT = {
       title: "Our delicious creations",
       subtitle: "Home-style dishes, cooked like at home",
     },
+    space: {
+      title: "Our dining room",
+      subtitle: "Turf floor, green booths, traditional fabrics and neon lights: a resto-bar where you feel at ease",
+    },
+    events: {
+      kicker: "Catering",
+      title: "Your ceremonies",
+      text: "Birthdays, weddings, family or company gatherings: Mialine Gifted Hands cooks for all your ceremonies. \"Homemade with love, served with excellence.\" Get in touch to talk it over.",
+      signatureTitle: "Our specialities",
+      dishes: [
+        "Kati-kati",
+        "Fufu & eru",
+        "Achu",
+        "Fried rice",
+        "Ekwang",
+        "Snail sauce & cocoyams",
+        "Fufu & egusi soup",
+      ],
+      cta: "Ask for a quote",
+      waMessage: "Hello Mialine Gifted Hands! I would like a quote for a ceremony.",
+      imgAlt: "Mialine Gifted Hands flyer, resto-bar Obili: menu, specialities and contacts for your ceremonies",
+    },
+    videos: {
+      title: "On video",
+      subtitle: "Discover Mialine Gifted Hands on screen",
+      presentation: "Welcome to Mialine Gifted Hands",
+      message: "A word from the team",
+      tiktok: "On our TikTok",
+      unsupported: "Your browser cannot play this video.",
+    },
+    social: {
+      title: "Follow us",
+      tiktok: "TikTok",
+      facebook: "Facebook",
+      tiktokPlay: "Play the TikTok video",
+      tiktokNote: "Playing loads TikTok's player and its cookies.",
+      tiktokOpen: "Open on TikTok",
+    },
     testimonials: {
       title: "What our customers say",
     },
@@ -322,7 +399,7 @@ export const DICT = {
       tagline: "Cameroonian cuisine, passed on with love",
       storyTitle: "Gifted hands, authentic recipes",
       storyP1:
-        "Mialine Gifted Hands was born at Carrefour Obili from a simple passion: sharing real Cameroonian food — the kind cooked in family kitchens and found in Yaoundé's markets.",
+        "Mialine Gifted Hands, a resto-bar opened in 2026 at Carrefour Obili, was born from a simple passion: sharing real Cameroonian food — the kind cooked in family kitchens and found in Yaoundé's markets.",
       storyP2:
         "Every morning we pick fresh ingredients — eru leaves, ndolé, plantains, local spices — and cook them slowly, just like at home. Dozens of dishes from across Cameroon's regions await you, from the Grassfields' pounded taro to the Bassa's mbongo tchobi.",
       storyImgAlt: "Dining room of Mialine Gifted Hands at Carrefour Obili, Yaoundé",
@@ -379,6 +456,7 @@ export const DICT = {
     contact: {
       title: "Contact & delivery",
       tagline: "We are here to serve you delicious meals every day",
+      eventsNote: "we also cook for your events, message us on WhatsApp.",
       formTitle: "Order for delivery",
       formSubtitle:
         "Fill in the form: your order opens directly in WhatsApp, ready to send.",

@@ -3,6 +3,24 @@ import { SITE } from "../data/site.js";
 import CtaBand from "../components/CtaBand.jsx";
 import Picture from "../components/Picture.jsx";
 
+const STRIP = [
+  {
+    src: "/img/banquettes-2.jpg",
+    altFr: "Banquettes vertes et table dressée",
+    altEn: "Green booths and a set table",
+  },
+  {
+    src: "/img/salle-1.jpg",
+    altFr: "Salle avec plafond lumineux et gazon au sol",
+    altEn: "Dining room with a lit ceiling and turf floor",
+  },
+  {
+    src: "/img/escalier.jpg",
+    altFr: "Escalier éclairé de lumières violettes",
+    altEn: "Staircase lit in violet",
+  },
+];
+
 export default function About() {
   const { lang, t } = useLang();
   const { cook } = SITE;
@@ -22,11 +40,22 @@ export default function About() {
             <p>{t("about.storyP2")}</p>
           </div>
           <Picture
-            src="/img/restaurant.jpg"
+            src="/img/salle-coin.jpg"
             alt={t("about.storyImgAlt")}
             className="about-story-img"
             sizes="(max-width: 1020px) 100vw, 460px"
           />
+        </div>
+        <div className="container about-strip">
+          {STRIP.map((item) => (
+            <Picture
+              key={item.src}
+              src={item.src}
+              alt={lang === "fr" ? item.altFr : item.altEn}
+              className="about-strip-img"
+              sizes="(max-width: 640px) 100vw, 33vw"
+            />
+          ))}
         </div>
       </section>
 
@@ -39,6 +68,7 @@ export default function About() {
             <div className="cook-text">
               <h2>{t("about.cookTitle")}</h2>
               <p className="cook-name">{cook.name}</p>
+              {cook.role ? <p className="cook-role">{cook.role[lang]}</p> : null}
               <p>{cook.story[lang]}</p>
             </div>
           </div>

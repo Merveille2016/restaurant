@@ -22,7 +22,7 @@
   text-align: center;
   color: var(--muted);
   font-size: 1.05rem;
-  margin: -28px 0 44px;
+  margin: 0 0 44px;
 }
 
 .site-shell {
@@ -470,6 +470,233 @@ main {
   color: #fff;
   font-weight: 600;
   font-size: 1.02rem;
+}
+
+.space-section,
+.videos-section {
+  padding: 90px 0;
+}
+
+.videos-section {
+  background: var(--surface);
+}
+
+.space-section h2,
+.videos-section h2 {
+  text-align: center;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.events-section {
+  padding: 90px 0;
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+.events-block {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.events-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.events-kicker {
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.events-text h2 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.events-text h3 {
+  margin: 24px 0 10px;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.events-text p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.events-dishes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.events-dishes li {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.92rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.video-card {
+  margin: 0;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card video,
+.tiktok-frame,
+.tiktok-facade {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  display: block;
+  border: 0;
+  background: #000;
+}
+
+.tiktok-facade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(160deg, #111 0%, var(--primary-dark) 100%);
+}
+
+.tiktok-handle {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tiktok-note {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 240px;
+}
+
+.tiktok-link {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.video-caption {
+  padding: 12px 16px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.videos-follow {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.videos-follow p {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid currentColor;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.social-handle {
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+.social-links-footer {
+  justify-content: flex-start;
+}
+
+.social-links-footer .social-link {
+  color: #fff;
+  padding: 8px 14px;
+}
+
+.social-links-footer .social-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.footer-follow {
+  margin: 18px 0 10px;
+  font-weight: 600;
+}
+
+.contact-extra {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.contact-follow {
+  font-weight: 600;
+  margin: 18px 0 12px;
+}
+
+.about-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.about-strip-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.cook-role {
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .testimonials-section {
@@ -1408,8 +1635,18 @@ main {
 
 @media (max-width: 1020px) {
   .gallery-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .video-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .events-block {
+    grid-template-columns: 1fr;
+  }
+
+  .events-image {
+    max-width: 420px;
+    margin: 0 auto;
   }
 
 
@@ -1487,8 +1724,16 @@ main {
 
 @media (max-width: 640px) {
   .gallery-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .video-grid,
+  .about-strip {
     grid-template-columns: 1fr;
+  }
+
+  .video-grid {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 
@@ -1540,6 +1785,6 @@ main {
   }
 
   .section-subtitle {
-    margin: -20px 0 36px;
+    margin: 0 0 36px;
   }
 }

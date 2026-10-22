@@ -2,6 +2,7 @@ import { useLang } from "../lang-context.js";
 import { SITE } from "../data/site.js";
 import { waLink } from "../whatsapp.js";
 import { IconChat } from "./Icons.jsx";
+import SocialLinks from "./SocialLinks.jsx";
 
 const LINKS = [
   ["", "nav.home"],
@@ -20,6 +21,8 @@ export default function Footer() {
         <div className="footer-brand">
           <p className="footer-logo">{SITE.name}</p>
           <p className="footer-tagline">{t("footer.tagline")}</p>
+          <p className="footer-follow">{t("social.title")}</p>
+          <SocialLinks className="social-links social-links-footer" />
         </div>
 
         <nav className="footer-col" aria-label={t("footer.navTitle")}>

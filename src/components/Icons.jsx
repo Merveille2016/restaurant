@@ -126,3 +126,27 @@ export function IconArrowRight({ size, label }) {
     </Svg>
   );
 }
+
+export function IconTiktok({ size, label }) {
+  return (
+    <Svg size={size} label={label}>
+      <path d="M9 12a4 4 0 1 0 4 4V2a5 5 0 0 0 5 5" />
+    </Svg>
+  );
+}
+
+export function IconFacebook({ size, label }) {
+  return (
+    <Svg size={size} label={label}>
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </Svg>
+  );
+}
+
+export function IconPlay({ size, label }) {
+  return (
+    <Svg size={size} label={label}>
+      <polygon points="6 3 20 12 6 21 6 3" />
+    </Svg>
+  );
+}

@@ -4,6 +4,7 @@ import { SITE } from "../data/site.js";
 import { waLink, deliveryOrderMessage } from "../whatsapp.js";
 import { saveOrder, supabaseConfigured } from "../supabase.js";
 import { IconChat, IconCheck, IconCopy, IconPhone } from "../components/Icons.jsx";
+import SocialLinks from "../components/SocialLinks.jsx";
 
 function Field({ id, label, error, children }) {
   return (
@@ -139,6 +140,13 @@ export default function Contact() {
                 ))}
               </div>
             </div>
+          </div>
+          <div className="contact-extra">
+            <p>
+              <strong>{t("events.title")}</strong> — {t("contact.eventsNote")}
+            </p>
+            <p className="contact-follow">{t("social.title")}</p>
+            <SocialLinks />
           </div>
         </div>
       </section>
