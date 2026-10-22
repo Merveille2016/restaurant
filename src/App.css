@@ -2360,6 +2360,36 @@ main {
   margin-bottom: 20px;
 }
 
+.admin-login-link {
+  display: block;
+  margin: 16px auto 0;
+  background: none;
+  border: 0;
+  color: var(--primary-light);
+  font: inherit;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.admin-login-link:hover {
+  color: var(--primary);
+}
+
+.form-success {
+  color: var(--primary-light);
+  background: #e9f7ef;
+  border: 1px solid #bfe6cd;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+}
+
+.admin-login-card .form-error {
+  margin-bottom: 14px;
+}
+
 /* --- Back-office: buttons & form primitives -------------------------------- */
 
 .admin-btn {

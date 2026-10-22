@@ -103,3 +103,75 @@ export async function adminSignOut() {
 export function adminEmail() {
   return readSession()?.user?.email ?? null;
 }
+
+/**
+ * Asks Supabase to email a password-reset link. Supabase answers the same
+ * way whether or not the address exists, so callers must not reveal which.
+ */
+export async function adminRequestReset(email, redirectTo) {
+  const { baseUrl, anonKey } = credentials();
+  const query = redirectTo ? `?redirect_to=${encodeURIComponent(redirectTo)}` : "";
+  const response = await fetch(`${baseUrl}/auth/v1/recover${query}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", apikey: anonKey },
+    body: JSON.stringify({ email }),
+  });
+  if (!response.ok && response.status !== 429) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  return response.status !== 429;
+}
+
+/**
+ * Reads the one-time sign-in that Supabase appends to the URL hash after a
+ * recovery or invite link (#access_token=…&type=recovery). Stores the
+ * session, clears the hash, and returns { type } — or { error } when the
+ * link is expired or already used — or null when there is nothing to read.
+ */
+export async function consumeAuthRedirect() {
+  if (typeof window === "undefined" || !window.location.hash) return null;
+  const params = new URLSearchParams(window.location.hash.slice(1));
+  const accessToken = params.get("access_token");
+  const error = params.get("error_description") || params.get("error");
+  if (!accessToken && !error) return null;
+
+  window.history.replaceState(null, "", window.location.pathname + window.location.search);
+  if (error) return { error };
+
+  const { baseUrl, anonKey } = credentials();
+  const response = await fetch(`${baseUrl}/auth/v1/user`, {
+    headers: { apikey: anonKey, Authorization: `Bearer ${accessToken}` },
+  });
+  if (!response.ok) return { error: `HTTP ${response.status}` };
+  const user = await response.json();
+  const expiresIn = Number(params.get("expires_in") || 3600);
+  writeSession({
+    access_token: accessToken,
+    refresh_token: params.get("refresh_token"),
+    expires_at: Number(params.get("expires_at")) || Math.floor(Date.now() / 1000) + expiresIn,
+    user,
+  });
+  return { type: params.get("type") || "magiclink" };
+}
+
+/** Sets a new password for the signed-in user (after a recovery link). */
+export async function adminUpdatePassword(password) {
+  const session = await adminSession();
+  if (!session) throw new Error("No session");
+  const { baseUrl, anonKey } = credentials();
+  const response = await fetch(`${baseUrl}/auth/v1/user`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: anonKey,
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({ password }),
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    const error = new Error(body.msg || body.message || `HTTP ${response.status}`);
+    error.code = body.error_code || body.code;
+    throw error;
+  }
+}
