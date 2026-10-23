@@ -163,6 +163,24 @@ export async function consumeAuthRedirect() {
   return { type: params.get("type") || "magiclink" };
 }
 
+/**
+ * Changes the signed-in manager's password from the dashboard. The current
+ * password is checked first (by signing in again with it), so an unattended
+ * open tab is not enough to take over the account.
+ */
+export async function adminChangePassword(currentPassword, newPassword) {
+  const email = adminEmail();
+  if (!email) throw new Error("No session");
+  try {
+    await adminSignIn(email, currentPassword);
+  } catch {
+    const error = new Error("Wrong password");
+    error.code = "wrong_password";
+    throw error;
+  }
+  await adminUpdatePassword(newPassword);
+}
+
 /** Sets a new password for the signed-in user (after a recovery link). */
 export async function adminUpdatePassword(password) {
   const session = await adminSession();

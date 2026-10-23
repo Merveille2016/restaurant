@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLang } from "../lang-context.js";
 import {
+  adminChangePassword,
   adminEmail,
   adminRequestReset,
   adminSession,
@@ -147,6 +148,107 @@ function SetPassword({ invited, onDone }) {
         ) : null}
         <button type="submit" className="btn btn-accent btn-block" disabled={busy}>
           {busy ? t("admin.loading") : t("admin.setPassword.submit")}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+function ChangePassword({ onClose }) {
+  const { t } = useLang();
+  const [current, setCurrent] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [error, setError] = useState(null);
+  const [done, setDone] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      setError(t("admin.setPassword.tooShort"));
+      return;
+    }
+    if (password !== confirm) {
+      setError(t("admin.setPassword.mismatch"));
+      return;
+    }
+    if (password === current) {
+      setError(t("admin.setPassword.same"));
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    try {
+      await adminChangePassword(current, password);
+      setDone(true);
+      setCurrent("");
+      setPassword("");
+      setConfirm("");
+    } catch (err) {
+      if (err.code === "wrong_password") setError(t("admin.changePassword.wrong"));
+      else if (err.code === "same_password") setError(t("admin.setPassword.same"));
+      else if (err.code === "weak_password") setError(t("admin.setPassword.weak"));
+      else setError(t("admin.changePassword.error"));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="admin-login">
+      <form className="admin-login-card" onSubmit={submit} noValidate>
+        <h2>{t("admin.changePassword.title")}</h2>
+        {done ? (
+          <p className="form-success" role="status">
+            {t("admin.changePassword.done")}
+          </p>
+        ) : (
+          <>
+            <p className="admin-login-hint">{t("admin.setPassword.hint")}</p>
+            <div className="form-field">
+              <label htmlFor="current-password">{t("admin.changePassword.current")}</label>
+              <input
+                id="current-password"
+                type="password"
+                value={current}
+                onChange={(event) => setCurrent(event.target.value)}
+                autoComplete="current-password"
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="new-password">{t("admin.setPassword.new")}</label>
+              <input
+                id="new-password"
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                autoComplete="new-password"
+                minLength={MIN_PASSWORD_LENGTH}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="confirm-password">{t("admin.setPassword.confirm")}</label>
+              <input
+                id="confirm-password"
+                type="password"
+                value={confirm}
+                onChange={(event) => setConfirm(event.target.value)}
+                autoComplete="new-password"
+              />
+            </div>
+            {error ? (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            ) : null}
+            <button type="submit" className="btn btn-accent btn-block" disabled={busy}>
+              {busy ? t("admin.loading") : t("admin.setPassword.submit")}
+            </button>
+          </>
+        )}
+        <button type="button" className="admin-login-link" onClick={onClose}>
+          {t("admin.changePassword.back")}
         </button>
       </form>
     </div>
@@ -338,6 +440,14 @@ export default function Admin() {
             <button
               type="button"
               className="admin-btn admin-btn-ghost"
+              aria-pressed={tab === "password"}
+              onClick={() => setTab("password")}
+            >
+              {t("admin.changePassword.open")}
+            </button>
+            <button
+              type="button"
+              className="admin-btn admin-btn-ghost"
               onClick={async () => {
                 await adminSignOut();
                 setEmail(null);
@@ -369,6 +479,7 @@ export default function Admin() {
           {tab === "menu" ? <AdminMenu /> : null}
           {tab === "drivers" ? <AdminDrivers /> : null}
           {tab === "settings" ? <AdminSettings /> : null}
+          {tab === "password" ? <ChangePassword onClose={() => setTab("orders")} /> : null}
         </div>
       </div>
     </div>
