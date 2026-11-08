@@ -140,7 +140,7 @@ export const DICT = {
       tagline: "La cuisine camerounaise, transmise avec amour",
       storyTitle: "Des mains douées, des recettes authentiques",
       storyP1:
-        "Mialine Gifted Hands, resto-bar ouvert en 2026 à Carrefour Obili, est né d'une passion simple : partager la vraie cuisine camerounaise, celle des cuisines familiales et des marchés de Yaoundé.",
+        "Mialine Gifted Hands, resto-bar ouvert en 2023 à Carrefour Obili, est né d'une passion simple : partager la vraie cuisine camerounaise, celle des cuisines familiales et des marchés de Yaoundé.",
       storyP2:
         "Chaque matin, nous sélectionnons des ingrédients frais — feuilles d'eru, ndolé, plantains, épices du terroir — et nous cuisinons lentement, comme à la maison. Des dizaines de plats de plusieurs régions du Cameroun vous attendent, du taro pilé des Grassfields au mbongo tchobi des Bassa.",
       storyImgAlt:
@@ -631,7 +631,7 @@ export const DICT = {
       tagline: "Cameroonian cuisine, passed on with love",
       storyTitle: "Gifted hands, authentic recipes",
       storyP1:
-        "Mialine Gifted Hands, a resto-bar opened in 2026 at Carrefour Obili, was born from a simple passion: sharing real Cameroonian food — the kind cooked in family kitchens and found in Yaoundé's markets.",
+        "Mialine Gifted Hands, a resto-bar opened in 2023 at Carrefour Obili, was born from a simple passion: sharing real Cameroonian food — the kind cooked in family kitchens and found in Yaoundé's markets.",
       storyP2:
         "Every morning we pick fresh ingredients — eru leaves, ndolé, plantains, local spices — and cook them slowly, just like at home. Dozens of dishes from across Cameroon's regions await you, from the Grassfields' pounded taro to the Bassa's mbongo tchobi.",
       storyImgAlt: "Dining room of Mialine Gifted Hands at Carrefour Obili, Yaoundé",

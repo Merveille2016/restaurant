@@ -14,7 +14,7 @@ Items published on the site that still need the owner's approval.
 - The captions were written without the audio being checked. Confirm who is speaking and adjust `videos.*` in `src/translations.js`.
 
 ## Ceremonies / catering (home page "Vos cérémonies", Contact)
-- Source: the official flyer (`public/img/affiche.jpg`, taken from `video_res2.mp4`). It says "Contact us for your ceremonies" and "EST. 2026".
+- Source: the official flyer (`public/img/affiche.jpg`, taken from `video_res2.mp4`). It says "Contact us for your ceremonies" and "EST. 2026" — note: the owner confirms the restaurant opened in **2023**, so the site copy uses 2023; the flyer's "EST. 2026" is wrong.
 - The listed event types (birthdays, weddings, gatherings) are examples. Confirm them.
 - The flyer shows a portrait. Confirm it can be published on the site.
 
