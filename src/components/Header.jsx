@@ -62,7 +62,7 @@ export default function Header({ route }) {
             width="44"
             height="44"
           />
-          {SITE.name}
+          <span className="header-logo-text">{SITE.name}</span>
         </a>
 
         <nav className="header-nav" aria-label={t("nav.menu")}>

@@ -103,7 +103,10 @@ export default function Home() {
           src="/img/home_page.jpg"
           alt=""
           className="hero-image"
-          sizes="(max-width: 860px) 100vw, 50vw"
+          sizes="100vw"
+          widths={[480, 960, 1600]}
+          width="1600"
+          height="893"
           loading="eager"
           fetchPriority="high"
         />

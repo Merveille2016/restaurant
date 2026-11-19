@@ -7,6 +7,8 @@ import sharp from "sharp";
 import { publicImgDir } from "./lib.js";
 
 export const WIDTHS = [480, 960];
+// Full-width photos also get a large variant so they stay sharp on desktop.
+export const EXTRA_WIDTHS = { "home_page.jpg": [1600] };
 const QUALITY = 72;
 
 const imgDir = publicImgDir();
@@ -16,7 +18,7 @@ async function variants(file) {
   const base = file.replace(/\.(jpe?g)$/i, "");
   const source = path.join(imgDir, file);
   const { width } = await sharp(source).metadata();
-  for (const target of WIDTHS) {
+  for (const target of [...WIDTHS, ...(EXTRA_WIDTHS[file] ?? [])]) {
     const out = path.join(imgDir, `${base}-${target}.webp`);
     await sharp(source)
       .resize({ width: Math.min(target, width), withoutEnlargement: true })

@@ -9,6 +9,7 @@ export default function Picture({
   fetchPriority,
   width,
   height,
+  widths = [480, 960],
 }) {
   const base = src.replace(/\.jpe?g$/i, "");
   const hasVariants = base !== src;
@@ -16,7 +17,7 @@ export default function Picture({
   return (
     <picture>
       {hasVariants ? (
-        <source type="image/webp" srcSet={`${base}-480.webp 480w, ${base}-960.webp 960w`} sizes={sizes} />
+        <source type="image/webp" srcSet={widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ")} sizes={sizes} />
       ) : null}
       <img
         src={src}
