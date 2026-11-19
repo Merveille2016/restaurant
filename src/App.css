@@ -326,6 +326,18 @@ main {
   color: #fff;
 }
 
+/* Dish panel shown under the hero text on small screens only. */
+.hero-dishes {
+  display: none;
+}
+
+.hero-dishes-img {
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+}
+
 /* A soft dark patch behind the text only; the rest of the photo stays clear. */
 .hero-content::before {
   content: "";
@@ -1684,6 +1696,29 @@ main {
 }
 
 @media (max-width: 860px) {
+  /* Stack the hero: text over the dining room, then the dish panel. */
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-image {
+    object-position: 18% center;
+  }
+
+  .hero-content {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .hero-dishes {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: min(100% - 40px, 480px);
+    margin: 0 auto 48px;
+  }
+
   .header-nav {
     display: none;
   }
@@ -1790,7 +1825,7 @@ main {
   }
 
   .hero-content {
-    padding: 90px 20px;
+    padding: 70px 20px 40px;
   }
 
   .hero-content::before {

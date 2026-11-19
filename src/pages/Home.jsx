@@ -137,6 +137,22 @@ export default function Home() {
             </a>
           </div>
         </div>
+        {/* Phones crop the hero to the dining room, so the dish panel from the
+            right side of the photo is shown here instead (hidden on desktop). */}
+        <div className="hero-dishes">
+          <Picture
+            src="/img/home_page_dishes.jpg"
+            alt={
+              lang === "fr"
+                ? "Nos plats : achu, eru & water fufu, ndolé, riz sauté & poulet, soupe ogbono, soupe okro"
+                : "Our dishes: achu, eru & water fufu, ndolé, fried rice & chicken, ogbono soup, okro soup"
+            }
+            className="hero-dishes-img"
+            sizes="(max-width: 640px) 92vw, 480px"
+            width="672"
+            height="842"
+          />
+        </div>
       </section>
 
       {SITE.offersConfirmed ? (
