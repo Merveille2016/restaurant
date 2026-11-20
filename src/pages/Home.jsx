@@ -120,8 +120,8 @@ export default function Home() {
             width="140"
             height="140"
           />
-          <h1>{SITE.name}</h1>
-          <p className="hero-tagline">{t("hero.tagline")}</p>
+          <h1><span className="hero-text-bg">{SITE.name}</span></h1>
+          <p className="hero-tagline"><span className="hero-text-bg">{t("hero.tagline")}</span></p>
           <div className="hero-actions">
             <a href={path("menu")} className="btn btn-accent">
               {t("hero.ctaMenu")}
